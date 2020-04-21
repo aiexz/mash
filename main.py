@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-JSON = ''
+JSON = input("Введите значение json: ")
 raw_json = json.loads(JSON.replace("\\", '\\\\').replace('\n', '\\n').replace('\t', '\\t').replace("\\\"","»"))
 for i in raw_json:
 	#print(i)
