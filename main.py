@@ -110,3 +110,21 @@ for task in JSON:
                 + " - "
                 + str(",".join(task_correct_answer))
             )
+    elif answer_type == "answer/order":
+        right_answer_groups = task["answer"]["right_answer"]["ids_order"]
+        for right_answer in right_answer_groups:
+            for answer_variant in task["answer"]["options"]:
+                if answer_variant["id"] == right_answer:
+                    if answer_variant["text"] != "":
+                        task_correct_answer = answer_variant["text"]
+                    else:
+                        for array in answer_variant["content"]:
+                            task_correct_answer = array["content"]
+                    print(
+                "Задание "
+                + str(task["taskNum"])
+                + ") "
+                + str(task_correct_answer)
+            )
+
+
