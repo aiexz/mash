@@ -8,14 +8,14 @@ tasks = json.loads(escape_json(raw_json))
 
 for task in tasks:
     answer_type = task["answer"]["type"]
-    options = task["answer"]["options"]
-
     if answer_type == "answer/single":
+        options = task["answer"]["options"]
         answer_id = task["answer"]["right_answer"]["id"]
         correct_answer = find_correct_single_answer(options, answer_id)
         log_answer(task, correct_answer)
 
     elif answer_type == "answer/multiple":
+        options = task["answer"]["options"]
         answer_ids = task["answer"]["right_answer"]["ids"]
         for correct_answer in find_correct_multiple_answers(options, answer_ids):
             log_answer(task, correct_answer)
@@ -46,3 +46,8 @@ for task in tasks:
     elif answer_type == "answer/order":
         for answer in order_answers(task):
             log_answer(task, answer)
+    elif answer_type == "answer/inline/choice/single":
+        for position in task["answer"]["right_answer"]["text_position_answer"]:
+            answer = inline_choice_single(task,position)
+            log_answer(task, answer)
+        

@@ -90,3 +90,12 @@ def order_answers(task: dict, answer_type: str = "ids_order") -> Iterable[str]:
                 task_correct_answer = get_respective_content(answer_variant)
 
                 yield task_correct_answer
+
+def inline_choice_single(task: dict,position : dict) -> Iterable[str]:
+    text_position = task['answer']['text_position']
+    position_id = position['position_id']
+    answer_id = position['id']
+    for possible_answers in text_position:
+        for possible_answer in possible_answers['options']:
+            if possible_answer["id"] == answer_id:
+               return get_respective_content(possible_answer)
