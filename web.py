@@ -310,7 +310,7 @@ textarea::placeholder {
     </script>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
-    this.querySelector("textarea").addEventListener("propertychange change click keyup input paste",ctChars);
+    this.querySelector("textarea").addEventListener("change",ctChars);
 });
 
 function ctChars() {
