@@ -1,6 +1,5 @@
 from typing import Optional, Iterable, List
 
-from loguru import logger
 
 
 def escape_json(unescaped_json: str) -> str:
@@ -13,7 +12,7 @@ def escape_json(unescaped_json: str) -> str:
 
 
 def log_answer(task: dict, text: str) -> None:
-    logger.info(f"Задание {task['taskNum']}) {text}")
+    return f"Задание {task['taskNum']}) {text}"
 
 
 def get_respective_content(answer: dict) -> Optional[str]:
