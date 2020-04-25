@@ -1,13 +1,11 @@
 from typing import Optional, Iterable, List
-
-
+import re
 
 def escape_json(unescaped_json: str) -> str:
     return (
-        unescaped_json.replace("\\", "\\\\")
+        re.sub(r'(?<!:)(?<!,)(?<!{)(?<!\[)"(?!:)(?!,)(?!})(?!\])'," кавычка ",unescaped_json).replace("\\", "\\\\")
         .replace("\n", "\\n")
         .replace("\t", "\\t")
-        .replace('\\"', "»")
     )
 
 
