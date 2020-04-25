@@ -8,7 +8,8 @@ def escape_json(unescaped_json: str) -> str:
         unescaped_json.replace("\\", "\\\\")
         .replace("\n", "\\n")
         .replace("\t", "\\t")
-        .replace('\\"', "»")
+        .replace('\\"', "к")
+        .replace('\\', "кавычка")
     )
 
 
