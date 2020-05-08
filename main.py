@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
-
+import os
 from utils import *
+
+if os.name == 'nt':
+    os.system ('cls')
+else:
+    os.system ('clear')
 
 print ('''
 Наш телеграмчик: @Termuxtop
