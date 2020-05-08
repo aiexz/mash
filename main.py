@@ -3,6 +3,15 @@ import json
 
 from utils import *
 
+print ('''
+Наш телеграмчик: @Termuxtop
+• ▌ ▄ ·.  ▄▄▄· .▄▄ ·  ▄ .▄
+·██ ▐███▪▐█ ▀█ ▐█ ▀. ██▪▐█
+▐█ ▌▐▌▐█·▄█▀▀█ ▄▀▀▀█▄██▀▐█
+██ ██▌▐█▌▐█ ▪▐▌▐█▄▪▐███▌▐▀
+▀▀  █▪▀▀▀ ▀  ▀  ▀▀▀▀ ▀▀▀ ·
+''')
+
 raw_json = input("Введите значение JSON: ")
 tasks = json.loads(escape_json(raw_json))
 
