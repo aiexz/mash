@@ -52,6 +52,11 @@ def answer_for_test(raw_json):
             for position in task["answer"]["right_answer"]["text_position_answer"]:
                 answer = inline_choice_single(task,position)
                 answers.append(log_answer(task, answer))
+        elif answer_type == "answer/gap/match/text":
+            for position in task["answer"]["right_answer"]["text_position_answer"]:
+                answer = gap_match(task,position)
+                log_answer(task, answer)
+
     return answers
 
 
@@ -73,6 +78,7 @@ def login():
     <html>
     <head>
     <title>МЭШ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     </head>
     <body>
     <form action="">
@@ -81,6 +87,9 @@ def login():
     <div class="bottom">
     </form>
     </div>
+    <footer class="mt-auto py-3 footer">
+    <span class="text-muted">Made by <a href="https://github.com/aiexz">aiexz</a> with ❤️</span>
+    </footer>
     <body>
     <style>
     *, *::before, *::after {
@@ -171,6 +180,14 @@ textarea::placeholder {
 .bottom > span {
     margin-right: 0.75em;
 }
+.footer {
+    background: #f5f5f5;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
     </style>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
@@ -202,6 +219,7 @@ def main():
     <html>
     <head>
     <title>МЭШ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     </head>
     <body>
     <form action="" method="post">
@@ -213,6 +231,9 @@ def main():
         </button>
     </div>
     </form>
+    <footer class="mt-auto py-3 footer">
+    <span class="text-muted">Made by <a href="https://github.com/aiexz">aiexz</a> with ❤️</span>
+    </footer>
     <body>
     <style>
     *, *::before, *::after {
@@ -302,6 +323,14 @@ textarea::placeholder {
 }
 .bottom > span {
     margin-right: 0.75em;
+}
+.footer {
+    background: #f5f5f5;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
     </style>
     </script>

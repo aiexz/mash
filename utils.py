@@ -96,3 +96,12 @@ def inline_choice_single(task: dict,position : dict) -> Iterable[str]:
         for possible_answer in possible_answers['options']:
             if possible_answer["id"] == answer_id:
                return get_respective_content(possible_answer)
+
+def gap_match(task: dict, position: dict) -> Iterable[str]:
+    text_position = task['answer']['options']
+    position_id = position['position_id']
+    answer_id = position['id']
+
+    for possible_answer in text_position:
+        if possible_answer["id"] == answer_id:
+           return get_respective_content(possible_answer)
