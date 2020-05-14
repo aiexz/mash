@@ -50,4 +50,9 @@ for task in tasks:
         for position in task["answer"]["right_answer"]["text_position_answer"]:
             answer = inline_choice_single(task,position)
             log_answer(task, answer)
-        
+    elif answer_type == "answer/gap/match/text":
+        for position in task["answer"]["right_answer"]["text_position_answer"]:
+            answer = gap_match(task,position)
+            log_answer(task, answer)
+
+                 

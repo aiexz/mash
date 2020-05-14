@@ -52,7 +52,6 @@ def find_correct_other_answer(task: dict, task_type: str):
 
 def match_answers(task: dict, answer_type: str) -> Iterable[tuple]:
     correct_answer = find_correct_other_answer(task, answer_type)
-
     for match_id in correct_answer:
         task_content = ""
         task_correct_answer = ""
@@ -94,7 +93,18 @@ def inline_choice_single(task: dict,position : dict) -> Iterable[str]:
     text_position = task['answer']['text_position']
     position_id = position['position_id']
     answer_id = position['id']
+
     for possible_answers in text_position:
         for possible_answer in possible_answers['options']:
             if possible_answer["id"] == answer_id:
                return get_respective_content(possible_answer)
+
+def gap_match(task: dict, position: dict) -> Iterable[str]:
+    text_position = task['answer']['options']
+    position_id = position['position_id']
+    answer_id = position['id']
+
+    for possible_answer in text_position:
+        if possible_answer["id"] == answer_id:
+           return get_respective_content(possible_answer)
+
