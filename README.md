@@ -28,5 +28,7 @@ PROFIT!!!
 
 ![6](img/6.PNG)
 
+# Вебсайт
 
+Имеется также [веб-версия](https://mash-answers.herokuapp.com)
 
