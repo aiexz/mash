@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import json,os
-from flask import Flask,request
+import json, os
+from flask import Flask, request
+
 app = Flask(__name__)
 
 from utils import *
+
 
 def answer_for_test(raw_json):
     tasks = json.loads(escape_json(raw_json))
@@ -34,37 +36,41 @@ def answer_for_test(raw_json):
         elif answer_type == "answer/groups":
             for answer in groups_answers(task):
                 first_part, second_part = answer
-                answers.append(log_answer(task, f"{first_part} - {', '.join(second_part)}"))
+                answers.append(
+                    log_answer(task, f"{first_part} - {', '.join(second_part)}")
+                )
 
         elif answer_type == "answer/table":
             correct_answer = find_correct_other_answer(task, "cells")
             for row in correct_answer:
                 for column in correct_answer[row]:
-                    answers.append(log_answer(
-                        task,
-                        f"{int(column) + 1}-й столбец, {row}-ая строчка - {correct_answer[row][column]}",
-                    ))
+                    answers.append(
+                        log_answer(
+                            task,
+                            f"{int(column) + 1}-й столбец, {row}-ая строчка - {correct_answer[row][column]}",
+                        )
+                    )
 
         elif answer_type == "answer/order":
             for answer in order_answers(task):
                 answers.append(log_answer(task, answer))
         elif answer_type == "answer/inline/choice/single":
             for position in task["answer"]["right_answer"]["text_position_answer"]:
-                answer = inline_choice_single(task,position)
+                answer = inline_choice_single(task, position)
                 answers.append(log_answer(task, answer))
         elif answer_type == "answer/gap/match/text":
             for position in task["answer"]["right_answer"]["text_position_answer"]:
-                answer = gap_match(task,position)
-                log_answer(task, answer)
+                answer = gap_match(task, position)
+                answers.append(log_answer(task, answer))
 
     return answers
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def login():
     answer = ""
     try:
-        json = request.form['json']
+        json = request.form["json"]
         answers = answer_for_test(json)
         for i in answers:
             answer += str(i) + "&#13;&#10;"
@@ -72,9 +78,8 @@ def login():
     except Exception as e:
         answer = str(e)
 
-        
-
-    return """
+    return (
+        """
     <html>
     <head>
     <title>МЭШ</title>
@@ -83,7 +88,9 @@ def login():
     <body>
     <form action="">
     <label for="tweet">Я помогу тебе получить ответы для МЭШ</label>
-    <textarea id="tweet" rows="3" disabled name="json" style="height: 25em;">""" + answer + """</textarea>
+    <textarea id="tweet" rows="3" disabled name="json" style="height: 25em;">"""
+        + answer
+        + """</textarea>
     <div class="bottom">
     </form>
     </div>
@@ -209,11 +216,10 @@ function ctChars() {
      
 </html>
     """
+    )
 
 
-
-
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def main():
     return """
     <html>
@@ -355,6 +361,7 @@ function ctChars() {
 </html>
     """
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
